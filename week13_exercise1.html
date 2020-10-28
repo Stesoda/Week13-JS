@@ -8,13 +8,23 @@
 <body>
     
     <script>
-        createVideo("https://www.youtube.com/watch?v=ykoxwrm0Seo").then( function(){
-            // when successful
-            playVideo()
+    //    async function createVideo () {
+    //     try { 
 
-        }).catch(function(error){
-            alert(error);
-        });
+    //       let source = await ("https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4")
+            
+    //   playVideo()
+
+    //     }
+           
+    //     catch(error) {
+            
+    //         alert(error);
+        
+    //     }
+        
+        
+    //     }
         
 
         function createVideo(videoSource)
@@ -23,8 +33,8 @@
             let video = document.createElement('video');
             let source = document.createElement('source');
             video.setAttribute ('controls', 'controls');
-            // audio.autoplay = true;
-            audio.setAttribute('id','video');
+            // video.autoplay = true;
+            video.setAttribute('id','video');
             source.src = videoSource;
             source.type = "video"
             video.appendChild(source);
