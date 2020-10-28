@@ -8,58 +8,36 @@
 <body>
     
     <script>
-    //    async function createVideo () {
-    //     try { 
+ loadVideo("https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4")
+ 
+ async function createVideo(src)
+  {
 
-    //       let source = await ("https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4")
-            
-    //   playVideo()
 
-    //     }
-           
-    //     catch(error) {
-            
-    //         alert(error);
-        
-    //     }
-        
-        
-    //     }
-        
+let video = document.createElement('video')
+video.setAttribute('controls', 'controls')
+video.setAttribute('id', 'video')
+let source = document.createElement('source')
+source.src = src
+source.type = "video/mp4"
+video.appendChild(source)
+video.onload = function () {
+     resolve(video)
+}
+ video.onerror = function () {
+     reject(new Error('video cannot be loaded at this time'))
+ }
+ document.body.append(video)
 
-        function createVideo(videoSource)
-        {
-            return new Promise( function(resolve ,reject){
-            let video = document.createElement('video');
-            let source = document.createElement('source');
-            video.setAttribute ('controls', 'controls');
-            // video.autoplay = true;
-            video.setAttribute('id','video');
-            source.src = videoSource;
-            source.type = "video"
-            video.appendChild(source);
 
-            video.onload = () => resolve (video)                      //()=> callback(null,audio)
 
-                
-
-            video.onerror = () => reject (new Error ("Video source not valid"));
-            
-            
-            document.body.appendChild(video);
-        })
-
-        }
-
-        function playVideo()
-        {
-
-            return new Promise(function(resolve,reject){
-               resolve(document.getElementById('video').play())
-            });
-           
-            
-        }
+}
+ 
+async  function loadVideo(src){
+ await createVideo(src);   
+  var video = document.getElementById('video'); 
+  video.play();
+}
     </script>
 </body>
 </html>
