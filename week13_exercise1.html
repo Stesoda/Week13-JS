@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        createVideo("https://www.youtube.com/watch?v=ykoxwrm0Seo").then( function(){
+            // when successful
+            playVideo()
+
+        }).catch(function(error){
+            alert(error);
+        });
+        
+
+        function createVideo(videoSource)
+        {
+            return new Promise( function(resolve ,reject){
+            let video = document.createElement('video');
+            let source = document.createElement('source');
+            video.setAttribute ('controls', 'controls');
+            // audio.autoplay = true;
+            audio.setAttribute('id','video');
+            source.src = videoSource;
+            source.type = "video"
+            video.appendChild(source);
+
+            video.onload = () => resolve (video)                      //()=> callback(null,audio)
+
+                
+
+            video.onerror = () => reject (new Error ("Video source not valid"));
+            
+            
+            document.body.appendChild(video);
+        })
+
+        }
+
+        function playVideo()
+        {
+
+            return new Promise(function(resolve,reject){
+               resolve(document.getElementById('video').play())
+            });
+           
+            
+        }
+    </script>
+</body>
+</html>
